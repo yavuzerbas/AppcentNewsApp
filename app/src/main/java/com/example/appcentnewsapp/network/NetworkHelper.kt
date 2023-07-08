@@ -31,11 +31,11 @@ object NetworkHelper {
     private fun getOkHttpClient(): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         httpClient.connectTimeout(60, TimeUnit.SECONDS)
-        httpClient.addInterceptor(createHttpLoggingInterceptor())
+        //httpClient.addInterceptor(createHttpLoggingInterceptor())
 
         return httpClient.build()
     }
-    private fun createHttpLoggingInterceptor() : HttpLoggingInterceptor {
+/*    private fun createHttpLoggingInterceptor() : HttpLoggingInterceptor {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
 
         if (BuildConfig.DEBUG) {
@@ -45,6 +45,6 @@ object NetworkHelper {
         }
 
         return httpLoggingInterceptor
-    }
+    }*/
 
 }
