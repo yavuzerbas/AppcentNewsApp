@@ -11,16 +11,40 @@
         android:label="fragment_new_detail"
         tools:layout="@layout/fragment_new_detail" >
         <action
-            android:id="@+id/action_newDetailFragment_to_homeNewsFragment"
+            android:id="@+id/action_newDetailFragment_to_newsFragment"
             app:destination="@id/newsFragment" />
+        <argument
+            android:name="title"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="description"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="newUrl"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="author"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="date"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.example.appcentnewsapp.NewsFragment"
-        android:label="fragment_ozkan_ugur"
+        android:name="com.example.appcentnewsapp.ui.fragment.news.NewsFragment"
+        android:label="fragment_news"
         tools:layout="@layout/fragment_news" >
         <action
-            android:id="@+id/action_homeNewsFragment_to_newDetailFragment"
+            android:id="@+id/action_newsFragment_to_newDetailFragment"
             app:destination="@id/newDetailFragment" />
     </fragment>
 </navigation>

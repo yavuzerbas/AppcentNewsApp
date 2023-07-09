@@ -12,12 +12,12 @@ class NewsViewHolder(
 ) : RecyclerView.ViewHolder(binding.root)
 {
     fun bind(item: ArticleResponse?){
-        binding.tvItemNewTitle.text = "${item?.title}"
-        binding.tvItemNewDescription.text = "${item?.description}"
+        binding.tvItemNewTitle.text = item?.title ?: ""
+        binding.tvItemNewDescription.text = item?.description ?: ""
 
         Picasso
             .get()
-            .load(item?.urlToImage)
+            .load(item?.urlToImage ?: "https://play-lh.googleusercontent.com/8LYEbSl48gJoUVGDUyqO5A0xKlcbm2b39S32xvm_h-8BueclJnZlspfkZmrXNFX2XQ")
             .into(binding.imgItemNew)
 
         binding.root.setOnClickListener{
