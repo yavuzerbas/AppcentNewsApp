@@ -24,8 +24,8 @@ class SplashActivity : AppCompatActivity() {
                 ) {
                     when{
                         response.isSuccessful -> {
-                            val data = response.body()?.articles
-                            navigateToMainActivity(data)
+                            val news = response.body()?.articles
+                            navigateToMainActivity(news)
                         }
                     }
                 }
@@ -39,9 +39,9 @@ class SplashActivity : AppCompatActivity() {
 
             })
     }
-    private fun navigateToMainActivity(data: List<ArticleResponse>?) {
+    private fun navigateToMainActivity(news: List<ArticleResponse>?) {
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("data", data?.toTypedArray())
+        intent.putParcelableArrayListExtra("news", ArrayList(news))
         startActivity(intent)
         finish()
     }

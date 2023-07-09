@@ -11,9 +11,9 @@ class NewsRecyclerAdapter(
     private val recyclerViewItemClickListener: RecyclerViewItemClickListener<ArticleResponse?>
 ) : RecyclerView.Adapter<NewsViewHolder>()
 {
-    private var news : List<ArticleResponse>? = null
+    private var news : ArrayList<ArticleResponse>? = null
 
-    fun setNews(news : List<ArticleResponse>?){
+    fun setNews(news : ArrayList<ArticleResponse>?){
         this.news = news
         notifyDataSetChanged()
 

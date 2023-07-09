@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/newsFragment3">
-
-    <fragment
-        android:id="@+id/newsFragment3"
-        android:name="com.example.appcentnewsapp.ui.fragment.news.NewsFragment"
-        android:label="fragment_news"
-        tools:layout="@layout/fragment_news" >
-        <action
-            android:id="@+id/action_newsFragment3_to_newDetailFragment"
-            app:destination="@id/newDetailFragment" />
-    </fragment>
+    app:startDestination="@id/newsFragment"
+    >
     <fragment
         android:id="@+id/newDetailFragment"
         android:name="com.example.appcentnewsapp.ui.fragment.new_detail.NewDetailFragment"
         android:label="fragment_new_detail"
         tools:layout="@layout/fragment_new_detail" >
         <action
-            android:id="@+id/action_newDetailFragment_to_newsFragment3"
-            app:destination="@id/newsFragment3" />
+            android:id="@+id/action_newDetailFragment_to_homeNewsFragment"
+            app:destination="@id/newsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.appcentnewsapp.NewsFragment"
+        android:label="fragment_ozkan_ugur"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_homeNewsFragment_to_newDetailFragment"
+            app:destination="@id/newDetailFragment" />
     </fragment>
 </navigation>

@@ -4,33 +4,46 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="5dp"
-    android:background="@color/white">
+    android:padding="10dp"
+    android:background="@color/white"
+    android:layout_marginBottom="1dp">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_item_new"
+        android:layout_width="80dp"
+        android:layout_height="104dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_item_new_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/img_item_new"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/black"
         android:textStyle="bold"
         tools:text="News title"/>
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_item_new_description"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/img_item_new"
         app:layout_constraintTop_toBottomOf="@id/tv_item_new_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="10dp"
         android:textColor="@color/black"
         tools:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit"
         android:maxLines="2"
-
         android:layout_marginTop="5dp"/>
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_item_new"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+    <View
+        android:id="@+id/separator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        app:layout_constraintTop_toBottomOf="@id/tv_item_new_description"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_marginTop="5dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

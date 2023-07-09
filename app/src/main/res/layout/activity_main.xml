@@ -6,86 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.main.MainActivity"
     android:background="@color/white">
-    <!-- Header -->
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_news_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="10dp"
-        android:text="@string/appcent_newsapp"
-        android:textStyle="bold"
-        android:fontFamily=""
-        android:textSize="32sp"
-        android:textColor="@color/black"
-        android:gravity="center"/>
 
-
-
-    <!-- Bottom Navigation Bar -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottom_navigation_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:src="@drawable/baseline_home_24"
-            app:layout_constraintBottom_toTopOf="@+id/tv_home"
-            app:layout_constraintEnd_toStartOf="@id/btn_favorite"
-            app:layout_constraintStart_toStartOf="parent" />
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/btn_home"
-            app:layout_constraintStart_toStartOf="@id/btn_home"
-            android:text="@string/news"
-            android:textColor="@color/black"
-            />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:src="@drawable/baseline_favorite_24"
-            app:layout_constraintBottom_toTopOf="@+id/tv_favorite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_home" />
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/btn_favorite"
-            app:layout_constraintStart_toStartOf="@id/btn_favorite"
-            android:text="@string/favorites"
-            android:textColor="@color/black"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <!-- Fragment -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        app:layout_constraintTop_toBottomOf="@id/tv_news_header"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph_main"
- />
+        />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
