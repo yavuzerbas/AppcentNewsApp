@@ -7,4 +7,5 @@
     <string name="appcent_newsapp">Appcent NewsApp</string>
     <string name="type_a_text">Type a text</string>
     <string name="news_source">News Source</string>
+    <string name="news_not_found">News not found</string>
 </resources>

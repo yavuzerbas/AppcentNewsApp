@@ -75,6 +75,17 @@
         app:layout_constraintTop_toBottomOf="@id/container_search_bar"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation_bar"
         />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_nothing_found"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/container_search_bar"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation_bar"
+        android:text="@string/news_not_found"
+        android:visibility="invisible"
+        android:textColor="@color/black"
+        />
     <!-- Bottom Navigation Bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_navigation_bar"

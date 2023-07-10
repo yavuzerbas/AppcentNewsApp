@@ -48,8 +48,8 @@ class NewsFragment : Fragment() {
         binding?.recyclerNews?.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding?.recyclerNews?.adapter = newsRecyclerAdapter
-
-        newsRecyclerAdapter.setNews(newsData)
+        handleNews(newsData)
+        //newsRecyclerAdapter.setNews(newsData)
     }
 
     private val recyclerViewItemClickListener = object :
@@ -63,16 +63,7 @@ class NewsFragment : Fragment() {
     private fun navigateToNewDetailFragment(articleResponse: ArticleResponse?){
         val isFavorite = articleResponse?.isFavorite ?: false
         findNavController().navigate(
-            /*NewsFragmentDirections.
-                actionNewsFragmentToNewDetailFragment(
-                    articleResponse?.title,
-                    articleResponse?.description,
-                    articleResponse?.urlToImage,
-                    articleResponse?.url,
-                    articleResponse?.author,
-                    articleResponse?.publishedAt,
-                    isFavorite
-                )*/
+
         NewsFragmentDirections.actionNewsFragmentToNewDetailFragment(
             articleResponse?.title,
             articleResponse?.description,
@@ -91,8 +82,8 @@ class NewsFragment : Fragment() {
                     call: Call<BaseResponse<List<ArticleResponse>?>>,
                     response: Response<BaseResponse<List<ArticleResponse>?>>
                 ) {
-                    newsInFragment = response.body()?.articles as ArrayList<ArticleResponse>?
-                    newsRecyclerAdapter.setNews(newsInFragment)
+                    val newsResponse = response.body()?.articles as ArrayList<ArticleResponse>?
+                    handleNews(newsResponse)
                 }
 
                 override fun onFailure(
@@ -103,6 +94,18 @@ class NewsFragment : Fragment() {
                 }
 
             })
+    }
+    private fun handleNews(news: ArrayList<ArticleResponse>?){
+        if(news == null || news.size == 0){
+            binding?.tvNothingFound?.visibility = View.VISIBLE
+            binding?.recyclerNews?.visibility = View.INVISIBLE
+        }
+        else{
+            newsInFragment = news
+            binding?.tvNothingFound?.visibility = View.INVISIBLE
+            binding?.recyclerNews?.visibility = View.VISIBLE
+            newsRecyclerAdapter.setNews(newsInFragment)
+        }
     }
     private fun getQueryString(): String {
         return binding?.editSearch?.text.toString()
