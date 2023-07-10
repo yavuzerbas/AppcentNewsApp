@@ -13,8 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.appcentnewsapp.databinding.FragmentNewWebViewBinding
 
-private const val ARG_WEB_URL = "webUrl"
-
 class NewWebViewFragment : Fragment() {
 
     private var binding : FragmentNewWebViewBinding? = null

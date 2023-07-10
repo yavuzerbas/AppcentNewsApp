@@ -8,11 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.appcentnewsapp.base.listener.RecyclerViewItemClickListener
+import com.example.appcentnewsapp.base.model.BaseResponse
 import com.example.appcentnewsapp.data.model.response.ArticleResponse
 import com.example.appcentnewsapp.databinding.FragmentNewsBinding
-import com.example.appcentnewsapp.ui.fragment.new_detail.NewDetailFragment
+import com.example.appcentnewsapp.network.NetworkHelper
 
 import com.example.appcentnewsapp.ui.fragment.news.recycler.NewsRecyclerAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 private const val ARG_NEWS = "my_news"
 class NewsFragment : Fragment() {
 
@@ -35,6 +40,8 @@ class NewsFragment : Fragment() {
             newsInFragment = it.getParcelableArrayList(ARG_NEWS)
             prepareNewsRecyclerAdapter(newsInFragment)
         }
+        btnSearchOnClickListener()
+        btnCancelOnClickListener()
     }
     private fun prepareNewsRecyclerAdapter(newsData: ArrayList<ArticleResponse>?) {
         newsRecyclerAdapter = NewsRecyclerAdapter(recyclerViewItemClickListener)
@@ -54,17 +61,6 @@ class NewsFragment : Fragment() {
     }
 
     private fun navigateToNewDetailFragment(articleResponse: ArticleResponse?){
-        /*val newDetailFragment = NewDetailFragment().apply {
-            arguments = Bundle().apply {
-                putString("imageUrl", articleResponse?.urlToImage)
-                putString("authorName", articleResponse?.author)
-                putString("date", articleResponse?.publishedAt.toString())
-                putString("title", articleResponse?.title)
-                putString("description", articleResponse?.description)
-            }
-        }*/
-        //findNavController().navigate()
-        //findNavController().navigate(NewsFragmentDirections)
         findNavController().navigate(
             NewsFragmentDirections.
                 actionNewsFragmentToNewDetailFragment(
@@ -77,31 +73,44 @@ class NewsFragment : Fragment() {
                 )
         )
     }
+    private fun getQueryNews(query: String) {
+        NetworkHelper.newsService.getQueryNews(query)
+            .enqueue(object : Callback<BaseResponse<List<ArticleResponse>?>>{
+                override fun onResponse(
+                    call: Call<BaseResponse<List<ArticleResponse>?>>,
+                    response: Response<BaseResponse<List<ArticleResponse>?>>
+                ) {
+                    newsInFragment = response.body()?.articles as ArrayList<ArticleResponse>?
+                    newsRecyclerAdapter.setNews(newsInFragment)
+                }
 
-    private fun getNews() {
-        //NetworkHelper.newsService.getHomePageNews()
+                override fun onFailure(
+                    call: Call<BaseResponse<List<ArticleResponse>?>>,
+                    t: Throwable
+                ) {
+                    TODO("Not yet implemented")
+                }
 
+            })
+    }
+    private fun getQueryString(): String {
+        return binding?.editSearch?.text.toString()
+    }
+    private fun btnSearchOnClickListener(){
+        binding?.btnSearch?.setOnClickListener{
+            val queryString = getQueryString()
+            if(queryString != "")
+                getQueryNews(queryString)
+        }
+    }
+    private fun btnCancelOnClickListener(){
+        binding?.btnCancel?.setOnClickListener {
+            binding?.editSearch?.setText("")
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
-    }
-
-    companion object {
-        /** TODO DELETE
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param_news Parameter news.
-         * @return A new instance of fragment NewsFragment.
-         */
-        @JvmStatic
-        fun newInstance(param_news: ArrayList<ArticleResponse>) =
-            NewsFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelableArrayList(ARG_NEWS, param_news)
-                }
-            }
     }
 }
