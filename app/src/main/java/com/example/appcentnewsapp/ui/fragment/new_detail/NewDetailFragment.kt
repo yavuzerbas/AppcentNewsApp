@@ -44,6 +44,7 @@ class NewDetailFragment : Fragment() {
 
         prepareUI()
         btnBackOnClickListener()
+        btnNewsSourceOnClickListener()
     }
 
     private fun prepareUI() {
@@ -60,5 +61,18 @@ class NewDetailFragment : Fragment() {
         binding?.btnBackFragmentNewDetail?.setOnClickListener{
             findNavController().popBackStack()
         }
+    }
+
+    private fun btnNewsSourceOnClickListener(){
+        binding?.btnNewsSource?.setOnClickListener {
+            findNavController().navigate(NewDetailFragmentDirections.
+                actionNewDetailFragmentToNewWebViewFragment(
+                    newUrl
+            ))
+        }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

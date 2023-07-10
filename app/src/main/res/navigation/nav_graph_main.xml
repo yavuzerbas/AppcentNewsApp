@@ -37,6 +37,9 @@
             android:name="date"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_newDetailFragment_to_newWebViewFragment"
+            app:destination="@id/newWebViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
@@ -46,5 +49,18 @@
         <action
             android:id="@+id/action_newsFragment_to_newDetailFragment"
             app:destination="@id/newDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newWebViewFragment"
+        android:name="com.example.appcentnewsapp.ui.fragment.new_web_view.NewWebViewFragment"
+        android:label="fragment_new_web_view"
+        tools:layout="@layout/fragment_new_web_view" >
+        <action
+            android:id="@+id/action_newWebViewFragment_to_newDetailFragment"
+            app:destination="@id/newDetailFragment" />
+        <argument
+            android:name="webUrl"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>
