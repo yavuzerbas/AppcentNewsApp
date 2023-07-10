@@ -13,6 +13,7 @@ data class ArticleResponse(
     val urlToImage: String?,
     val publishedAt: String?,
     val content: String?,
+    val isFavorite: Boolean = false
 ) : Parcelable
 
 @Parcelize

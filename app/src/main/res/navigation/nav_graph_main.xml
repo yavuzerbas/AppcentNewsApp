@@ -37,9 +37,13 @@
             android:name="date"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="isFavorite"
+            app:argType="boolean" />
         <action
             android:id="@+id/action_newDetailFragment_to_newWebViewFragment"
             app:destination="@id/newWebViewFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/newsFragment"

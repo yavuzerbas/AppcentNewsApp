@@ -61,16 +61,27 @@ class NewsFragment : Fragment() {
     }
 
     private fun navigateToNewDetailFragment(articleResponse: ArticleResponse?){
+        val isFavorite = articleResponse?.isFavorite ?: false
         findNavController().navigate(
-            NewsFragmentDirections.
+            /*NewsFragmentDirections.
                 actionNewsFragmentToNewDetailFragment(
                     articleResponse?.title,
                     articleResponse?.description,
                     articleResponse?.urlToImage,
                     articleResponse?.url,
                     articleResponse?.author,
-                    articleResponse?.publishedAt
-                )
+                    articleResponse?.publishedAt,
+                    isFavorite
+                )*/
+        NewsFragmentDirections.actionNewsFragmentToNewDetailFragment(
+            articleResponse?.title,
+            articleResponse?.description,
+            articleResponse?.urlToImage,
+            articleResponse?.url,
+            articleResponse?.author,
+            articleResponse?.publishedAt,
+            isFavorite
+        )
         )
     }
     private fun getQueryNews(query: String) {
